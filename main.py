@@ -143,6 +143,6 @@ def extractSocietyData(societyName:str)->None:
     extract_data(url)
     
 
-societyName = input()
+societyName = "Sri Anjana Green layout"
 
 print(extractSocietyData(societyName))
