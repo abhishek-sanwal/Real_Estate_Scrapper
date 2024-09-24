@@ -1,12 +1,3 @@
-'''
-Scrappers are commonly deployed by search engines like Google that 
-extract publicly available data from various websites over the internet 
-so that a search solution can be built over it. Being a real estate internet 
-company we also want to help our customers and in-house operations teams with 
-similar data by making it available on their tips. For joining our tech team can
-you write a Python program that takes a society's name as input and can extract 
-all its publicly available data on 99acres.com
-'''
 
 import time,requests
 import pandas as pd
