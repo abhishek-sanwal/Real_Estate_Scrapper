@@ -1,6 +1,13 @@
 
 
+# Mac file
 .DS_Store
+
+# Environment
 .env
+
+# Chromedriver. Should be compatiable with your chrome browser version.
 chromedriver
+
+# Code runner file[VsCode]
 tempCodeRunnerFile.py
