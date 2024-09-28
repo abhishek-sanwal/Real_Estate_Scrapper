@@ -3,15 +3,20 @@ from selenium import webdriver
 from selenium.common.exceptions import StaleElementReferenceException,\
     NoSuchElementException,WebDriverException
 from selenium.webdriver.common.by import By
-from bs4 import BeautifulSoup
 from collections import defaultdict
 import pandas as pd
 import time
 
-from typing import List,Set,Dict,DefaultDict,Any
+from typing import List,DefaultDict
+from .exception import CityCodeException, LocalityCodeException
 
+
+# Image SideCard which contains all the data
 card_div_class = ".tupleNew__contentWrap"
+
+# Heading class of Society 
 heading_class = ".tupleNew__locationName"
+
 short_description_class = ".tupleNew__propertyHeading"
 price_class =".tupleNew__priceValWrap>span"
 sqft_class =".tupleNew__area1Type"
@@ -43,9 +48,15 @@ def get_tuple(node,class_:str)->List[str]:
     
     # Default Values
     data1 = data2 = "Not Available"
+    
     try:
+        # Get data by css selector
         data = node.find_elements(By.CSS_SELECTOR,class_)
+        
+        # First Child Node data
         data1 = data[0].text.strip()
+        
+        # Second Child Node data
         data2 = data[1].text.strip()
         
     except StaleElementReferenceException as e:
@@ -54,20 +65,33 @@ def get_tuple(node,class_:str)->List[str]:
     except NoSuchElementException as e:
         print(e,"No such element")
 
+    except WebDriverException as e:
+        print(e,"Not able to connect to devtools,\
+            window might be in sleep mode. Check pc settings.")
+        
     return [data1, data2]
 
-def process_results(url:str, city:str)->None:    
+
+def process_results(url:str, type:str)->None:    
     
     mapp:DefaultDict[List] = defaultdict(list)
     
     for page_num in range(1,10):
-    
+        
+        # Get Chrome driver
+        # Driver should be compatible with your chrome version. 
+        # Else you might face errors
+        
         driver = webdriver.Chrome()
         time.sleep(3)
         
+        # Load page
         driver.get(f"{url}&page={page_num}")
+
+        #  Wait for loading
         time.sleep(5)
         
+        # For each card-div
         for node in driver.find_elements(By.CSS_SELECTOR,
                                             card_div_class):
             
@@ -90,11 +114,13 @@ def process_results(url:str, city:str)->None:
     )
     
     df.to_csv(
-        f"{city}_99acres.csv",mode='a'
+        f"{type}_99acres.csv",mode='a'
     )
     
 
 def solve():
+    
+    # we can set more filters by adjusting query strings
     
     # Should be in lakhs
     min_budget = 10 # 10 Lakhs
@@ -123,13 +149,13 @@ def solve():
     
     city_code_df = df[df["city"] == city]
     loc_df = loc_df[loc_df["locality"] == locality]
-    print(loc_df.head(10))
+    
     if not len(loc_df):
         
-        raise Exception("Locality not found in df. To scrap that locality first add that locality code in csv manually or run script")
+        raise CityCodeException("Locality not found in df. To scrap that locality first add that locality code in csv manually or run script")
     
     if not len(city_code_df) :
-        raise Exception("City not found in df. Please choose one of the city from the csv")
+        raise LocalityCodeException("City not found in df. Please choose one of the city from the csv")
     
     city_code = city_code_df["code"].values[0]
     locality_code = loc_df["code"].values[0]
