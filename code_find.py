@@ -56,7 +56,7 @@ def solve(url,start_count=1,end_count=50,name="city"):
     df.to_csv(
         f"99acres_{name}_code.csv",mode="a",header=False,index=False
     )
-    
+
     return "Done"
 
 
