@@ -23,12 +23,16 @@ sqft_class =".tupleNew__area1Type"
 bhk_class =".tupleNew__area1Type"
 description_class = ".tupleNew__descText"
 
+'''
+Function to get data document.querySelector(.${class}).textContent
+'''
 def get_data(node,class_:str)->str:
     
     # Default value
     data = "Not Available"
     
     try:
+        # Get text content
         data = node.find_element(By.CSS_SELECTOR,class_).text.strip()
         
     except StaleElementReferenceException as e:
@@ -43,6 +47,10 @@ def get_data(node,class_:str)->str:
             window might be in sleep mode. Check pc settings.")
         
     return data
+
+'''
+Function to get data document.querySelector(.${class}).textContent
+'''
 
 def get_tuple(node,class_:str)->List[str]:
     
@@ -74,8 +82,10 @@ def get_tuple(node,class_:str)->List[str]:
 
 def process_results(url:str, type:str)->None:    
     
+    # A mapp to store data
     mapp:DefaultDict[List] = defaultdict(list)
     
+    # Loop over all pages
     for page_num in range(1,10):
         
         # Get Chrome driver
@@ -150,14 +160,19 @@ def solve():
     city_code_df = df[df["city"] == city]
     loc_df = loc_df[loc_df["locality"] == locality]
     
+    # If no such city code exists
     if not len(loc_df):
         
-        raise CityCodeException("Locality not found in df. To scrap that locality first add that locality code in csv manually or run script")
+        raise LocalityCodeException("Locality not found in df. To scrap that locality first add that locality code in csv manually or run script")
     
+    # if not such locality code exists
     if not len(city_code_df) :
-        raise LocalityCodeException("City not found in df. Please choose one of the city from the csv")
+        raise CityCodeException("City not found in df. Please choose one of the city from the csv")
     
+    # Get value
     city_code = city_code_df["code"].values[0]
+    
+    # Get value
     locality_code = loc_df["code"].values[0]
     
     '''
