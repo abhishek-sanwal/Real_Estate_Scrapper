@@ -15,6 +15,7 @@ This project enables to scrape
 - **Filters** can be applied like how many bathrooms, maxPrice, minPrice etc.
 - This app can be used to extract all **list pages** of 99acres like this.
   &nbsp;
+  &nbsp;
   ![Scrap Page](./assets/image.png)
 
 ---
@@ -30,7 +31,7 @@ This project enables to scrape
 
 ---
 
-- ###### City & locality
+- ##### City & locality
 
 ![SD_1](/assets/South_delhi_1.png)
 &nbsp;
