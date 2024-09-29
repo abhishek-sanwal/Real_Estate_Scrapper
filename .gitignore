@@ -11,3 +11,8 @@ chromedriver
 
 # Code runner file[VsCode]
 tempCodeRunnerFile.py
+
+# Python cache files 
+*/__pycache__
+*/*/__pycache__
+*/*/__pycache__
