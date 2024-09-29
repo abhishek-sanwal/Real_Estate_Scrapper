@@ -165,6 +165,31 @@ def get_page_number(driver, PAGE_CLASS)->int:
     return int(page_data[page_data.rfind(" ")+1:])
 
 
+def get_node(driver,class_):
+    
+    node = ""
+    
+    for i in range(MAX_RETRIES):
+        
+        try:
+            node = driver.find_element(By.CSS_SELECTOR,class_)
+            break
+        except NoSuchElementException as e:
+                print(e,f"Either Single page or element not found, Retrying, Total Retries {MAX_RETRIES} times,Retry:{i}")
+                time.sleep(SHORT_WAIT)
+                
+        except StaleElementReferenceException as e:
+            print(e,f"Stale element, element not in dom, Retrying, Total Retries {MAX_RETRIES} times, Retry:{i}")
+            time.sleep(SHORT_WAIT)
+            
+        except WebDriverException as e:
+            print(e,"Not able to connect to dev tools Most probably window is in sleep mode")
+            break
+            
+    if not node:
+        raise NoSuchElementException(f"element not found after{MAX_RETRIES}")
+    
+    return node 
 '''
 Function to get paginated society Data
 I am extracting limited fields but almost anything can be extracted
@@ -317,10 +342,10 @@ def extractSocietyData(societyName:str)->None:
     
     # Click first available suggestion Usually 
     # first suggestion is best suggestion So
-    search_suggestions = driver.find_element(By.CSS_SELECTOR, SUGGESTION_CLASS)
+    search_suggestions = get_node(driver,SUGGESTION_CLASS)
                                             
-    first_search_suggestion = search_suggestions.find_element(By.TAG_NAME, 
-                                                              'li')
+    first_search_suggestion = get_node(search_suggestions,"li")
+    
     first_search_suggestion.click()
 
     # Press enter search_bar
