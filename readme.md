@@ -54,7 +54,7 @@ Demo Csv files has been added with this repository named as
 - **Noida_99acres.csv**
 - **Griha Pravesh_99acres.csv**
 
-![Demo video](/assets/Demo.mp4)
+<!-- ![Demo video](/assets/Demo.mp4) -->
 
 ![Online Player Link](https://streamable.com/f8rg3t) **Expires at 26 Sep 24**
 
