@@ -2,7 +2,14 @@
 <h1>99 acres Web Scrapper</h1>
 </div>
 
+
 ---
+
+- **Looking to buy a property in India? We are here to help you.**
+
+- **Introducing a rapid real-estate solution for all your property needs.** 
+
+- **Instantly get all available data according to your family needs and budget without scrolling and thinking for months.**
 
 ## Features:
 
