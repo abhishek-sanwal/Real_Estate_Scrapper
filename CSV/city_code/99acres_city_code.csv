@@ -1,0 +1,79 @@
+city,code
+Delhi / NCR,1
+North Delhi,2
+South Delhi,3
+East Delhi,4
+West Delhi,5
+Central Delhi,6
+Noida,7
+Gurgaon,8
+Ghaziabad,9
+Faridabad,10
+Mumbai,12
+Central Mumbai,14
+Navi Mumbai,15
+Mumbai South,16
+Pune,19
+Bangalore,20
+Bangalore North,21
+Bangalore East,22
+Bangalore Central,23
+Kolkata,25
+Kolkata North,26
+Kolkata South,27
+Kolkata East,28
+Howrah,29
+Kolkata Central,30
+Chennai,32
+Chennai North,33
+Chennai South,34
+Chennai Central,35
+Chennai West,36
+Hyderabad Metropolitan Region,38
+Ahmedabad,45
+Gandhinagar,46
+Ahmedabad South,47
+Ahmedabad East,48
+Ahmedabad West,49
+Anantapur,52
+Guntakal,53
+Guntur,54
+Kurnool,55
+Nellore,56
+Nizamabad,57
+Rajahmundry,58
+Tirupati,60
+Vijayawada,61
+Visakhapatnam,62
+Warangal,63
+Andhra Pradesh Others,64
+Itanagar,65
+Arunachal Pradesh Others,66
+Guwahati,67
+Silchar,68
+Assam Others,69
+Bhagalpur,70
+Patna,71
+Bihar Others,72
+Chandigarh,73
+Bhilai,74
+Raipur,75
+Chattisgarh Others,76
+Dadra & Nagar Haveli,77
+Daman & Diu,78
+Panjim,80
+Vasco Da Gama,81
+Goa Others,82
+Anand,84
+Bharuch,86
+Bhavnagar,87
+Bhuj,88
+Gir,90
+Jamnagar,91
+Kandla,92
+Porbandar,93
+Rajkot,94
+Surat,95
+Vadodara,96
+Gujarat Others,97
+Ambala,98
