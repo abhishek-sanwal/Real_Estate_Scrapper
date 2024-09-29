@@ -8,8 +8,8 @@
 
 This project enables to scrape
 
-- Any **City** real-estate data
-- Any **Locality** real-estate data
+- Any **City** real-estate data.
+- Any **Locality** real-estate data.
 - Any **particular society or apartments** data.
 - **Pagination** fully supported.
 - **Filters** can be applied like how many bathrooms, maxPrice, minPrice etc.
@@ -48,19 +48,54 @@ This project enables to scrape
 
 ## Demo
 
-Demo Csv files has been added with this repository named as
+Demo Csv files has been added with this repository named in CSV folder as:
 
 - **South Delhi_99acres.csv**
 - **Noida_99acres.csv**
 - **Griha Pravesh_99acres.csv**
 
-<!-- ![Demo video](/assets/Demo.mp4) -->
 
-![Online Player Link](https://streamable.com/f8rg3t) **Expires at 26 Sep 24**
-
----
+![Click_to_view_Demo](https://drive.google.com/file/d/1wQBnms4r3ADqgokkjRot5d22nBHzuJme/view?usp=sharing)
 
 ## How to Use?
+
+Use Any python version >= 3.10
+
+- **Clone the repo**
+  &nbsp;
+
+  ```
+  git clone https://github.com/abhishek-sanwal/Real_Estate_Scrapper.git
+  ```
+
+  &nbsp;
+
+- **Install required dependencies**
+
+  ```
+  pip3 install -r requirements.txt
+  ```
+
+  &nbsp;
+
+- **Run this command in root directory of project**
+
+  ```
+  python3 app.main
+
+  ```
+
+  For doing search based on society Name
+  &nbsp;
+  **OR**
+
+  ```
+  python3 app.script
+  ```
+
+  For doing search based on city and locality name
+
+---
 
 #### For Society-wise search
 
