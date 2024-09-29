@@ -1,6 +1,7 @@
 
 import time
 import pandas as pd
+import os
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -9,11 +10,12 @@ import selenium.webdriver.support.expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, \
 StaleElementReferenceException, WebDriverException
 
-import exceptions.exception as exception
 
 from collections import defaultdict
 from typing import List, DefaultDict
+from exceptions.exception import LoadErrorException
 
+current_dir = os.path.dirname(os.path.abspath(__file__))
 # SOME CONSTANTS DEFINED
 MAX_RETRIES = 3
 SHORT_WAIT = 2
@@ -172,7 +174,7 @@ including pictures, links which has been revealed.
 '''
 
 
-def process_results(url:str, societyName:str,flag:bool)->None:    
+def process_results(url:str, societyName:str,flag:bool=False)->None:    
     
     mapp:DefaultDict[List] = defaultdict(list)
     
@@ -200,7 +202,7 @@ def process_results(url:str, societyName:str,flag:bool)->None:
             description = get_data(node,DESCRIPTION_CLASS)
             sqft,bhk = get_list(node,SQFT_CLASS)
             
-            if not flag and heading.find(societyName) != -1:
+            if flag or heading.find(societyName) != -1:
                 print(heading)
                 mapp["society_name"].append(heading)
                 mapp["short_description"].append(short_description)
@@ -223,9 +225,10 @@ def process_results(url:str, societyName:str,flag:bool)->None:
     # Remove duplicates rows
     df.drop_duplicates(keep="first",inplace=True)
     
+    relative_path = os.path.join(current_dir,"../CSV/output/")
     # Convert to csv and store
     df.to_csv(
-        f"CSV/output/{societyName}_99acres.csv",mode='a'
+        f"{relative_path}{societyName}_99acres.csv",mode='a'
     )
 
 
@@ -252,7 +255,7 @@ def get_url(url):
             
             time.sleep(SHORT_WAIT)
             
-        except LoadErrorException as e:
+        except exception.LoadErrorException as e:
             
             print(e,f"Retrying... \
                     Total retries {MAX_RETRIES}.Retry number{i}")
@@ -271,7 +274,7 @@ def extractSocietyData(societyName:str)->None:
     
     driver = webdriver.Chrome()
     
-    driver = get_url(url)
+    driver = get_url(URL)
     
     # Extract title of page
     print(driver.title)
@@ -337,9 +340,11 @@ def extractSocietyData(societyName:str)->None:
     
     process_results(url,societyName,False)
 
-societyName = "Shree Ananth Nagar Layout"
-# societyName = "Magarpatta Annex"
-# societyName = "Jaypee Greens"
-societyName = "Griha Pravesh"
+if __name__ == "__main__":
+    
+    societyName = "Shree Ananth Nagar Layout"
+    # societyName = "Magarpatta Annex"
+    # societyName = "Jaypee Greens"
+    societyName = "Griha Pravesh"
 
-print(extractSocietyData(societyName))
+    print(extractSocietyData(societyName))

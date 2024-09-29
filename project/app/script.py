@@ -9,8 +9,14 @@ from typing import List,DefaultDict
 from exceptions.exception import CityCodeException, LocalityCodeException
 from app.main import process_results
 
-CITY_CODE_CSV = "CSV/city_code/99acres_city_code.csv"
-LOCALITY_CODE_CSV = "CSV/locality_code/99acres_locality_code.csv"
+import os
+
+BASE_DIR = os.path.dirname(__file__)
+
+
+
+CITY_CODE_CSV = os.path.join(BASE_DIR,"../CSV/city_code/99acres_city_code.csv") 
+LOCALITY_CODE_CSV = os.path.join(BASE_DIR,"../CSV/locality_code/99acres_locality_code.csv")
 
 def solve():
     
@@ -65,17 +71,17 @@ def solve():
     For Scrapping data city wise Use this code
     '''
     # For scrapping results city wise
-    # city_url = f"https://99acres.com/search/property/buy?city={city_code}&bedroom_num={bhk}&budget_max={max_budget}&budget_min={min_budget}&availability={av}"
+    city_url = f"https://99acres.com/search/property/buy?city={city_code}&bedroom_num={bhk}&budget_max={max_budget}&budget_min={min_budget}&availability={av}"
 
-    # process_results(url=city_url,city=city)
+    process_results(city_url, city,True)
     
     '''
     For Scrapping data city + locality wise use this code
     '''
     # For scrapping results locality + city wise
-    locality_url = f"https://99acres.com/search/property/buy?city={city_code}&locality={locality_code}&bedroom_num={bhk}&budget_max={max_budget}&budget_min={min_budget}&availability={av}"
+    # locality_url = f"https://99acres.com/search/property/buy?city={city_code}&locality={locality_code}&bedroom_num={bhk}&budget_max={max_budget}&budget_min={min_budget}&availability={av}"
 
-    process_results(locality_url, locality,True)
+    # process_results(locality_url, locality,True)
 
 
 if __name__== "__main__":
